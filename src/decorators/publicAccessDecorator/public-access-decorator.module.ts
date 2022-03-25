@@ -1,4 +1,8 @@
 import { Module } from '@nestjs/common';
+import { PublicAccess } from './public-access.decorator';
 
-@Module({})
-export class PublicAccessDecoratorModule {}
+@Module({
+    imports: [],
+    exports: [PublicAccess],
+})
+export class PublicAccessDecoratorModule { }

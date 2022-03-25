@@ -1,8 +1,8 @@
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { jwtConstants } from '../../consts/constants';
-import { UsersModule } from '../usersService/users.module';
-import { AuthModule } from './auth.module';
+import { UsersServiceModule } from '../usersService/users.service.module';
+import { AuthServiceModule } from './auth.service.module';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
@@ -12,8 +12,8 @@ describe('AuthService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        AuthModule,
-        UsersModule,
+        AuthServiceModule,
+        UsersServiceModule,
         JwtModule.register({
           secret: jwtConstants.secret,
           signOptions: { expiresIn: '60s' },

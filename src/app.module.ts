@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './controllers';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { AuthModule } from './services/authService/auth.module';
+import { AuthServiceModule } from './services/authService/auth.service.module';
 
 @Module({
   imports: [
-    AuthModule,
+    AuthServiceModule,
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 10,

@@ -1,12 +1,16 @@
 import { Module } from '@nestjs/common';
-import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from '../../services';
 import { AppController } from './app.controller';
+import { AuthServiceModule, JwtAuthModule, LocalAuthGuardModule, RolesGuardModule } from '../../services';
 
 @Module({
+    imports: [
+        AuthServiceModule, 
+        JwtAuthModule, 
+        LocalAuthGuardModule,
+        RolesGuardModule
+    ],
     providers: [
-        AppController,
-        { provide: APP_GUARD, useClass: RolesGuard }
+        AppController
     ],
     exports: [AppController]
 })
