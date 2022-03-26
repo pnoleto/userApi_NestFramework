@@ -1,17 +1,20 @@
+import * as path from 'path';
 import { Module } from '@nestjs/common';
-import { AppController } from './controllers';
+import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { AuthServiceModule } from './services/authService/auth.service.module';
+import { AppControllerModule } from './controllers/appController/app.controller.module';
 
 @Module({
   imports: [
-    AuthServiceModule,
-    ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 10,
-    }),
+    AppControllerModule,
+    ThrottlerModule.forRoot({ ttl: 60, limit: 10, }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: [`${__dirname}/configs/${process.env.NODE_ENV}.env`],
+    })
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [],
+  exports: [ConfigModule]
 })
-export class AppModule {}
+export class AppModule { }

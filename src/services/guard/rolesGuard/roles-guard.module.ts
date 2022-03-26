@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { RolesGuard } from './roles.guard';
 
 @Module({
-    providers: [RolesGuard],
-    exports: [RolesGuard]
+    providers: [RolesGuard]
 })
 export class RolesGuardModule { }

@@ -4,14 +4,11 @@ import { AuthServiceModule, JwtAuthModule, LocalAuthGuardModule, RolesGuardModul
 
 @Module({
     imports: [
-        AuthServiceModule, 
-        JwtAuthModule, 
-        LocalAuthGuardModule,
-        RolesGuardModule
+        JwtAuthModule,
+        RolesGuardModule,
+        AuthServiceModule,
+        LocalAuthGuardModule
     ],
-    providers: [
-        AppController
-    ],
-    exports: [AppController]
+    controllers: [AppController],
 })
 export class AppControllerModule { }

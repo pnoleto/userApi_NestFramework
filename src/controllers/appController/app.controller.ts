@@ -1,11 +1,16 @@
-import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
 import { AuthService, JwtAuthGuard, LocalAuthGuard, RolesGuard } from '../../services';
+import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Roles } from '../../decorators';
 import { Role } from '../../enums';
 
 @Controller()
 export class AppController {
-  constructor(private authService: AuthService) { }
+  constructor(
+    private configService: ConfigService,
+    private authService: AuthService) {
+      console.log(process.env.WEST);
+  }
 
   @Post('auth/login')
   @UseGuards(LocalAuthGuard)
