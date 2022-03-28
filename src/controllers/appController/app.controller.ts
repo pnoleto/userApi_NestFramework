@@ -9,7 +9,6 @@ export class AppController {
   constructor(
     private configService: ConfigService,
     private authService: AuthService) {
-      console.log(process.env.WEST);
   }
 
   @Post('auth/login')
@@ -19,8 +18,8 @@ export class AppController {
   }
 
   @Get('profile')
-  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin, Role.User)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   public profile(@Request() req: any): any {
     return req.user;
   }
