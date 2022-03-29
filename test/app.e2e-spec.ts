@@ -25,19 +25,19 @@ describe('AppController (e2e)', () => {
       .expect('{"statusCode":401,"message":"Unauthorized"}');
   });
 
+  it('Error - On Getting profile information without token - profile (GET))', () => {
+    return request(app.getHttpServer())
+      .get('/profile')
+      .expect(401)
+      .expect('{"statusCode":401,"message":"Unauthorized"}');
+  });
+
   it('OK - Login - auth/login (POST))', () => {
     return request(app.getHttpServer())
       .post('/auth/login')
       .send(user)
       .expect(201)
       .then(response => { tokenResponse = response.body.access_token; });
-  });
-
-  it('Error - On Getting profile information without token - profile (GET))', () => {
-    return request(app.getHttpServer())
-      .get('/profile')
-      .expect(401)
-      .expect('{"statusCode":401,"message":"Unauthorized"}');
   });
 
   it('OK - On Getting profile information - profile (GET))', () => {
@@ -47,5 +47,5 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect(JSON.stringify(profile));
   });
-  
+
 });

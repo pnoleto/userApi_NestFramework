@@ -1,6 +1,7 @@
 import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
 import { User, UsersService } from '../usersService/users.service';
+import { jwtRefreshTokenConstants, jwtConstants } from '../../consts/constants';
 
 @Injectable()
 export class AuthService {
@@ -19,14 +20,23 @@ export class AuthService {
     return null;
   }
 
-  public async login(user: any): Promise<{ access_token: string; }> {
+  public async login(user: any): Promise<{ access_token: string, refresh_token: string }> {
     const payload = {
-      sub: user.userId,
-      username: user.username,
-      roles: user.roles,
+      sub: user.userId, username: user.username, roles: user.roles,
     };
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload, jwtConstants),
+      refresh_token: this.jwtService.sign(payload, jwtRefreshTokenConstants),
     };
+  }
+
+  public async generateTokenFromRefreshToken(refreshToken: string): Promise<{ access_token: string }> {
+    const user: any = this.jwtService.decode(refreshToken);
+
+    const { iat, exp, ...playload } = user;
+
+    return {
+      access_token: this.jwtService.sign(playload, jwtConstants)
+    }
   }
 }

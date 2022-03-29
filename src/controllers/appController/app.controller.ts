@@ -1,7 +1,7 @@
 import { AuthService, JwtAuthGuard, LocalAuthGuard, RolesGuard } from '../../services';
-import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
+import { Controller, Request, Post, UseGuards, Get, Body } from '@nestjs/common';
+import { PublicAccess, Roles } from '../../decorators';
 import { ConfigService } from '@nestjs/config';
-import { Roles } from '../../decorators';
 import { Role } from '../../enums';
 
 @Controller()
@@ -13,8 +13,14 @@ export class AppController {
 
   @Post('auth/login')
   @UseGuards(LocalAuthGuard)
-  public async login(@Request() req: any): Promise<{ access_token: string; }> {
+  public async login(@Request() req: any) {
     return this.authService.login(req.user);
+  }
+
+  @Post('auth/refreshToken')
+  @PublicAccess()
+  public async refreshToken(@Body() body: any): Promise<{ access_token: string; }> {
+    return this.authService.generateTokenFromRefreshToken(body.refresh_token);
   }
 
   @Get('profile')
