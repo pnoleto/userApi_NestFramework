@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { Role } from '../../enums/role.enum';
 
 export class User {
-  userId: number;
-  username: string;
-  password: string;
-  roles: Role[];
+  public userId: number;
+  public username: string;
+  public password: string;
+  public roles: Role[];
 
   constructor(userId: number, username: string, password: string, roles: Role[]) {
     this.userId = userId;

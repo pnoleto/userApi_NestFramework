@@ -30,10 +30,8 @@ export class AuthService {
     };
   }
 
-  public async generateTokenFromRefreshToken(refreshToken: string): Promise<{ access_token: string }> {
-    const user: any = this.jwtService.decode(refreshToken);
-
-    const { iat, exp, ...playload } = user;
+  public async generateTokenFromRefreshToken(user: any): Promise<{ access_token: string }> {
+    const playload = user;
 
     return {
       access_token: this.jwtService.sign(playload, jwtConstants)
