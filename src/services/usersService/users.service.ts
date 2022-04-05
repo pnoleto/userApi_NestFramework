@@ -22,7 +22,7 @@ export class UsersService {
     new User(2, 'maria', 'guess', [Role.Admin])
   ];
 
-  public async findOne(username: string): Promise<User | undefined> {
+  public findOne(username: string): User {
     return this.users.find((user) => user.username === username);
   }
 }

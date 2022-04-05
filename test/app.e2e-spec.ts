@@ -20,14 +20,14 @@ describe('AppController (e2e)', () => {
 
   it('Error -Thown an error while getting profile without Token JWT - profile (GET)', () => {
     return request(app.getHttpServer())
-      .get('/profile')
+      .get('/auth/profile')
       .expect(401)
       .expect('{"statusCode":401,"message":"Unauthorized"}');
   });
 
   it('Error - On Getting profile information without token - profile (GET))', () => {
     return request(app.getHttpServer())
-      .get('/profile')
+      .get('/auth/profile')
       .expect(401)
       .expect('{"statusCode":401,"message":"Unauthorized"}');
   });
@@ -42,7 +42,7 @@ describe('AppController (e2e)', () => {
 
   it('OK - On Getting profile information - profile (GET))', () => {
     return request(app.getHttpServer())
-      .get('/profile')
+      .get('/auth/profile')
       .set('Authorization', `Bearer ${tokenResponse}`)
       .expect(200)
       .expect(JSON.stringify(profile));
