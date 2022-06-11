@@ -47,6 +47,3 @@ export const SwaggerSettings = {
   description: swaggerConfig.description,
   version: swaggerConfig.version,
 };
-
-console.log(SwaggerSettings);
-
