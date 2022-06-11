@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+//import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ThrottleSettings } from './consts/constants';
 import { AppControllerModule } from './controllers';
@@ -7,13 +7,16 @@ import { AppControllerModule } from './controllers';
 @Module({
   imports: [
     AppControllerModule,
-    ThrottlerModule.forRoot({ ttl: ThrottleSettings.ttl, limit: ThrottleSettings.limit }),
-    ConfigModule.forRoot({
+    ThrottlerModule.forRoot({
+      ttl: ThrottleSettings.ttl,
+      limit: ThrottleSettings.limit,
+    }),
+    /*ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: [`${__dirname}/configs/${process.env.NODE_ENV}.env`],
-    })
+    }),*/
   ],
   controllers: [],
-  providers: []
+  providers: [],
 })
-export class AppModule { }
+export class AppModule {}
