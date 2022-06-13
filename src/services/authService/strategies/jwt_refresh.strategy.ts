@@ -5,20 +5,25 @@ import { Injectable } from '@nestjs/common';
 import { Role } from '../../../enums/role.enum';
 
 @Injectable()
-export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
+export class JwtRefreshStrategy extends PassportStrategy(
+  Strategy,
+  'jwt-refresh',
+) {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromBodyField('refresh_token'),
-      ignoreExpiration: true,
+      ignoreExpiration: false,
       secretOrKey: jwtRefreshTokenConstants.secret,
-    });     
+    });
   }
 
-  public async validate(payload: any): Promise<{ userId: number; username: string; roles: Role[]; }> {
+  public async validate(
+    playload: any,
+  ): Promise<{ userId: number; username: string; roles: Role[] }> {
     return {
-      userId: payload.sub,
-      username: payload.username,
-      roles: payload.roles
+      userId: playload.sub,
+      username: playload.username,
+      roles: playload.roles,
     };
   }
 }

@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import {
   AuthServiceModule,
   JwtAuthModule,
+  JwtRefreshTokenGuard,
   LocalAuthGuardModule,
   RolesGuardModule,
 } from '../../services';
@@ -10,6 +11,7 @@ import {
 @Module({
   imports: [
     JwtAuthModule,
+    JwtRefreshTokenGuard,
     RolesGuardModule,
     AuthServiceModule,
     LocalAuthGuardModule,

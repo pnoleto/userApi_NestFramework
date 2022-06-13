@@ -1,6 +1,7 @@
 import {
   AuthService,
   JwtAuthGuard,
+  JwtRefreshTokenGuard,
   LocalAuthGuard,
   RolesGuard,
 } from '../../services';
@@ -12,9 +13,7 @@ import { Role } from '../../enums';
 @ApiTags('auth')
 @Controller('auth')
 export class AppController {
-  constructor(
-    private authService: AuthService,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
@@ -27,9 +26,10 @@ export class AppController {
   }
 
   @Post('refreshToken')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtRefreshTokenGuard)
   @ApiOkResponse({ description: 'Example of endpoint description' })
   public refreshToken(@Request() req: any): { access_token: string } {
+    console.log(req.user);
     return this.authService.generateTokenFromRefreshToken(req.user);
   }
 

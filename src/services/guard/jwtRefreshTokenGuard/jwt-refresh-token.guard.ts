@@ -1,14 +1,15 @@
 import {
+  CanActivate,
   ExecutionContext,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
-import { IS_PUBLIC_KEY } from '../../../decorators';
+import { IS_PUBLIC_KEY } from 'src/decorators';
 
 @Injectable()
-export class JwtAuthGuard extends AuthGuard(['jwt']) {
+export class JwtRefreshTokenGuard extends AuthGuard(['jwt-refresh']) {
   constructor(private reflector: Reflector) {
     super();
   }
