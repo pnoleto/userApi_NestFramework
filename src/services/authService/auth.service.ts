@@ -1,8 +1,8 @@
+import { User } from 'src/models';
 import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../usersService/users.service';
 import { jwtRefreshTokenConstants, jwtConstants } from '../../consts/constants';
-import { User } from 'src/models';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
 
   public async validateUser(username: string, pass: string) {
     const user = await this.usersService.findOne(username);
-    
+
     if (user && user.password === pass) {
       const { password, ...result } = user.get();
       return result;
