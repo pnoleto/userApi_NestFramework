@@ -7,7 +7,7 @@ describe('AppController (e2e)', () => {
   let app: INestApplication;
   let tokenResponse: any;
   const user = { username: 'admin', password: 'admin' };
-  const profile = { userId: 1, username: "admin", roles: ["admin"] }
+  const profile = { userId: 1, username: 'admin', roles: ['admin'] };
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -37,7 +37,9 @@ describe('AppController (e2e)', () => {
       .post('/auth/login')
       .send(user)
       .expect(201)
-      .then(response => { tokenResponse = response.body.access_token; });
+      .then((response) => {
+        tokenResponse = response.body.access_token;
+      });
   });
 
   it('OK - On Getting profile information - profile (GET))', () => {
@@ -47,5 +49,4 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect(JSON.stringify(profile));
   });
-
 });

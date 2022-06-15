@@ -4,18 +4,15 @@ import { UsersServiceModule } from '../usersService/users.service.module';
 import { AuthServiceModule } from './auth.service.module';
 import { AuthService } from './auth.service';
 import { Role } from '../../enums';
+import { User } from 'src/models';
 
 describe('AuthService', () => {
   let service: AuthService;
   let response: any;
-  
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        AuthServiceModule,
-        UsersServiceModule,
-        JwtModule.register({})
-      ],
+      imports: [AuthServiceModule, UsersServiceModule, JwtModule.register({})],
       providers: [],
     }).compile();
 
@@ -36,14 +33,13 @@ describe('AuthService', () => {
 
   it('generate token', () => {
     expect(
-      service.login({ userId: 'admin', username: 'admin', roles: [Role.Admin] })
+      service.login(new User('admin', 'admin', [Role.Admin])),
     ).toBeDefined();
   });
 
   it('profile information', () => {
     expect(
-      service.login({ userId: 'admin', username: 'admin', roles: [Role.Admin] })
+      service.login(new User('admin', 'admin', [Role.Admin])),
     ).toBeDefined();
   });
-
 });

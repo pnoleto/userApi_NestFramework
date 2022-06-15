@@ -1,29 +1,37 @@
-import { AuthService, JwtAuthGuard, LocalAuthGuard, RolesGuard, } from '../../services';
+import {
+  AuthService,
+  JwtAuthGuard,
+  JwtRefreshTokenGuard,
+  LocalAuthGuard,
+  RolesGuard,
+} from '../../services';
 import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { ConfigService } from '@nestjs/config';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from '../../decorators';
 import { Role } from '../../enums';
 
 @ApiTags('auth')
+@ApiBearerAuth('JWT')
 @Controller('auth')
 export class AppController {
-  constructor(
-    private configService: ConfigService,
-    private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
-  @ApiOkResponse({ description: 'Example of endpoint description' })
-  public login(@Request() req: any): { access_token: string; refresh_token: string; } {
+  @ApiOkResponse({
+    description: 'Example of endpoint description',
+  })
+  public login(@Request() req: any): {
+    access_token: string;
+    refresh_token: string;
+  } {
     return this.authService.login(req.user);
   }
 
   @Post('refreshToken')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtRefreshTokenGuard)
   @ApiOkResponse({ description: 'Example of endpoint description' })
-  public refreshToken(@Request() req: any): { access_token: string; } {
+  public refreshToken(@Request() req: any): { access_token: string } {
     return this.authService.generateTokenFromRefreshToken(req.user);
   }
 

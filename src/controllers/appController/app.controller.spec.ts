@@ -6,7 +6,14 @@ import { AppController } from './app.controller';
 import { Role } from '../../enums';
 
 describe('AppController', () => {
-  let req = { user: { userId: 1, username: 'test', password: 'test', roles: [Role.Admin] } };
+  let req = {
+    user: {
+      userId: 1,
+      username: 'test',
+      password: 'test',
+      roles: [Role.Admin],
+    },
+  };
   let appController: AppController;
   let response: any;
   let app: any;
@@ -20,7 +27,7 @@ describe('AppController', () => {
         ConfigModule.forRoot({
           isGlobal: true,
           envFilePath: [`${__dirname}/configs/${process.env.NODE_ENV}.env`],
-        })
+        }),
       ],
       controllers: [AppController],
       providers: [],
@@ -35,7 +42,7 @@ describe('AppController', () => {
   });
 
   it('should return "token information"', () => {
-    response = appController.login(req)
+    response = appController.login(req);
     expect(response.access_token).not.toBeUndefined();
     expect(response.refresh_token).not.toBeUndefined();
   });
@@ -43,5 +50,4 @@ describe('AppController', () => {
   it('should return "refresh token"', () => {
     expect(appController.refreshToken(response)).not.toBeUndefined();
   });
-
 });

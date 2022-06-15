@@ -1,6 +1,7 @@
+import { User } from 'src/models';
 import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
-import { User, UsersService } from '../usersService/users.service';
+import { UsersService } from '../usersService/users.service';
 import { jwtRefreshTokenConstants, jwtConstants } from '../../consts/constants';
 
 @Injectable()
@@ -8,25 +9,29 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
-  ) { }
+  ) {}
 
-  public validateUser(username: string, pass: string) {
-    const user: User = this.usersService.findOne(username);
+  public async validateUser(username: string, pass: string) {
+    const user = await this.usersService.findOne(username);
+
     if (user && user.password === pass) {
-      const { password, ...result } = user;
+      const { password, ...result } = user.get();
       return result;
     }
 
     return null;
   }
 
-  public login(user: any): { access_token: string, refresh_token: string } {
-    const payload = {
-      sub: user.userId, username: user.username, roles: user.roles,
+  public login(user: User): { access_token: string; refresh_token: string } {
+    const playload = {
+      sub: user.id,
+      username: user.username,
+      roles: user.roles,
     };
+
     return {
-      access_token: this.jwtService.sign(payload, jwtConstants),
-      refresh_token: this.jwtService.sign(payload, jwtRefreshTokenConstants),
+      access_token: this.jwtService.sign(playload, jwtConstants),
+      refresh_token: this.jwtService.sign(playload, jwtRefreshTokenConstants),
     };
   }
 
@@ -34,7 +39,7 @@ export class AuthService {
     const playload = user;
 
     return {
-      access_token: this.jwtService.sign(playload, jwtConstants)
-    }
+      access_token: this.jwtService.sign(playload, jwtConstants),
+    };
   }
 }

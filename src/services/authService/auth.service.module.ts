@@ -7,12 +7,8 @@ import { UsersServiceModule } from '../usersService/users.service.module';
 import { JwtStrategy, JwtRefreshStrategy } from './strategies';
 
 @Module({
-  imports: [
-    JwtModule.register({}),
-    PassportModule,
-    UsersServiceModule,
-  ],
+  imports: [JwtModule.register({}), PassportModule, UsersServiceModule],
   providers: [AuthService, LocalStrategy, JwtStrategy, JwtRefreshStrategy],
   exports: [AuthService],
 })
-export class AuthServiceModule { }
+export class AuthServiceModule {}

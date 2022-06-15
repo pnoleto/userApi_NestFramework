@@ -1,28 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { Role } from '../../enums/role.enum';
-
-export class User {
-  public userId: number;
-  public username: string;
-  public password: string;
-  public roles: Role[];
-
-  constructor(userId: number, username: string, password: string, roles: Role[]) {
-    this.userId = userId;
-    this.username = username;
-    this.password = password;
-    this.roles = roles;
-  }
-};
+import { Inject, Injectable } from '@nestjs/common';
+import { User } from '../../models';
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
-    new User(1, 'admin', 'admin', [Role.Admin]),
-    new User(2, 'maria', 'guess', [Role.Admin])
-  ];
+  constructor(
+    @Inject('usersRepository')
+    private usersRepository: typeof User,
+  ) {}
 
-  public findOne(username: string): User {
-    return this.users.find((user) => user.username === username);
+  public async findOne(username: string): Promise<User> {
+    return await this.usersRepository.findOne({ where: { username } });
   }
 }
