@@ -8,7 +8,7 @@ import {
 import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from '../../decorators';
-import { Role } from 'userApi/domain';
+import { Role } from '@userApi/domain';
 
 @ApiTags('auth')
 @ApiBearerAuth('JWT')

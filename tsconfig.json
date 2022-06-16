@@ -18,11 +18,17 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "userApi/domain": [
+      "@userApi/domain": [
         "libs/domain/src"
       ],
-      "userApi/domain/*": [
+      "@userApi/domain/*": [
         "libs/domain/src/*"
+      ],
+      "@userApi/infra": [
+        "libs/infra/src"
+      ],
+      "@userApi/infra/*": [
+        "libs/infra/src/*"
       ]
     }
   }

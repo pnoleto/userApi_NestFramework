@@ -92,7 +92,8 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
-      "^userApi/domain(|/.*)$": "<rootDir>/libs/domain/src/$1"
+      "^@userApi/domain(|/.*)$": "<rootDir>/libs/domain/src/$1",
+      "^@userApi/infra(|/.*)$": "<rootDir>/libs/infra/src/$1"
     }
   }
 }
