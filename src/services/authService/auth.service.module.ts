@@ -3,7 +3,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { PassportModule } from '@nestjs/passport';
 import { UsersServiceModule } from '../usersService/users.service.module';
-import { JwtStrategy, JwtRefreshStrategy, LocalStrategy } from './strategies';
+import { JwtStrategy, JwtRefreshStrategy } from './strategies';
+import { LocalStrategy } from '@userApi/domain';
 
 @Module({
   imports: [JwtModule.register({}), PassportModule, UsersServiceModule],

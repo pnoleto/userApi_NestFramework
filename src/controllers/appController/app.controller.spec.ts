@@ -1,9 +1,9 @@
 import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppControllerModule } from './app.controller.module';
-import { AuthServiceModule, JwtAuthModule } from '../../services';
 import { AppController } from './app.controller';
-import { Role } from 'userApi/domain';
+import { Role } from '@userApi/domain';
+import { AuthServiceModule } from 'src/services';
 
 describe('AppController', () => {
   let req = {
@@ -22,12 +22,7 @@ describe('AppController', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         AppControllerModule,
-        AuthServiceModule,
-        JwtAuthModule,
-        ConfigModule.forRoot({
-          isGlobal: true,
-          envFilePath: [`${__dirname}/configs/${process.env.NODE_ENV}.env`],
-        }),
+        AuthServiceModule
       ],
       controllers: [AppController],
       providers: [],

@@ -1,11 +1,14 @@
-import { DatabaseSettings } from '@userApi/domain';
 import 'dotenv/config';
+import {
+  AppSettings,
+  DatabaseSettings,
+  JwtRefreshTokenSettings,
+  JwtSettings,
+  SwaggerSettings,
+  ThrottleSettings,
+} from '@userApi/domain';
 
 const environmentVariables = process.env as any;
-
-export class AppSettings {
-  port: number;
-}
 
 export const appSettings: AppSettings = {
   port: environmentVariables.PORT || 3000,
@@ -13,34 +16,19 @@ export const appSettings: AppSettings = {
 
 const tokenConfig = JSON.parse(environmentVariables.tokenConfig);
 
-export class JwtSettings {
-  secret: string;
-  expiresIn: string;
-}
-
 export const jwtSettings: JwtSettings = {
   secret: tokenConfig.secret,
-  expiresIn: tokenConfig.expiresIn,
+  expiresIn: tokenConfig.expiresIn
 };
 
 const refreshTokenConfig = JSON.parse(environmentVariables.refreshTokenConfig);
 
-export class JwtRefreshTokenSettings {
-  secret: string;
-  expiresIn: string;
-}
-
 export const jwtRefreshTokenSettings: JwtRefreshTokenSettings = {
   secret: refreshTokenConfig.secret,
-  expiresIn: refreshTokenConfig.expiresIn,
+  expiresIn: refreshTokenConfig.expiresIn
 };
 
 const ttlConfig = JSON.parse(environmentVariables.ttlConfig);
-
-export class ThrottleSettings {
-  ttl: number;
-  limit: number;
-}
 
 export const throttleSettings: ThrottleSettings = {
   ttl: ttlConfig.ttl,
@@ -59,12 +47,6 @@ export const databaseSettings: DatabaseSettings = {
 };
 
 const swaggerConfig = JSON.parse(environmentVariables.swaggerConfig);
-
-export class SwaggerSettings {
-  title: string;
-  description: string;
-  version: string;
-}
 
 export const swaggerSettings: SwaggerSettings = {
   title: swaggerConfig.title,

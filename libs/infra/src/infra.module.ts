@@ -1,7 +1,7 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { DatabaseSettings, DomainModule } from '@userApi/domain';
-import { InfraService } from './infra.service';
 import { POSTGRES_PROVIDER, USERS_REPOSITORY } from './providers';
+import { InfraService } from './infra.service';
 
 @Module({
   imports: [DomainModule],
