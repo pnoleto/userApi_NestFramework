@@ -1,7 +1,8 @@
 import { Table, Column, DataType, Model } from 'sequelize-typescript';
 import { Role } from '../../enums';
 
-@Table
+
+@Table({ tableName: 'users' })
 export class User extends Model {
   constructor(username?: string, password?: string, roles?: Role[]) {
     super();

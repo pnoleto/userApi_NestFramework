@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Sequelize } from 'sequelize-typescript';
 import { PostgresSettings } from 'src/consts/constants';
-import { User } from 'src/models';
+import { User } from 'userApi/domain';
 
 @Injectable()
 export class PostgresProvider {}

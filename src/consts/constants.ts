@@ -1,7 +1,5 @@
 import 'dotenv/config';
 
-const IS_PUBLIC_KEY = 'isPublic';
-
 const environmentVariables = process.env as any;
 
 export const AppConfig = {

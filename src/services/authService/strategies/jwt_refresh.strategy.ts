@@ -2,7 +2,7 @@ import { jwtRefreshTokenConstants } from '../../../consts/constants';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { Role } from '../../../enums/role.enum';
+import { Role } from 'userApi/domain';
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(

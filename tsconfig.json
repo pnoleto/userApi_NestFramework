@@ -16,6 +16,14 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "userApi/domain": [
+        "libs/domain/src"
+      ],
+      "userApi/domain/*": [
+        "libs/domain/src/*"
+      ]
+    }
   }
 }

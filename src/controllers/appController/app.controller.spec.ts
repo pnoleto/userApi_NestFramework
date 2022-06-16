@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppControllerModule } from './app.controller.module';
 import { AuthServiceModule, JwtAuthModule } from '../../services';
 import { AppController } from './app.controller';
-import { Role } from '../../enums';
+import { Role } from 'userApi/domain';
 
 describe('AppController', () => {
   let req = {

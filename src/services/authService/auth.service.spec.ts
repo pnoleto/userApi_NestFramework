@@ -3,8 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersServiceModule } from '../usersService/users.service.module';
 import { AuthServiceModule } from './auth.service.module';
 import { AuthService } from './auth.service';
-import { Role } from '../../enums';
-import { User } from 'src/models';
+import { Role, User } from 'userApi/domain';
 
 describe('AuthService', () => {
   let service: AuthService;
