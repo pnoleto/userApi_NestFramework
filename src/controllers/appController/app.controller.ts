@@ -1,14 +1,14 @@
+import { AuthService } from '../../services';
+import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import {
-  AuthService,
+  Role,
   JwtAuthGuard,
   JwtRefreshTokenGuard,
   LocalAuthGuard,
   RolesGuard,
-} from '../../services';
-import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from '../../decorators';
-import { Role } from '@userApi/domain';
+  Roles,
+} from '@userApi/domain';
 
 @ApiTags('auth')
 @ApiBearerAuth('JWT')

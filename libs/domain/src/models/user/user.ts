@@ -2,17 +2,17 @@ import { Table, Column, DataType, Model } from 'sequelize-typescript';
 import { Role } from '../../enums';
 
 
-@Table({ tableName: 'users' })
+@Table({tableName:'users'})
 export class User extends Model {
-  constructor(username?: string, password?: string, roles?: Role[]) {
+  /*constructor(username?: string, password?: string, roles?: Role[]) {
     super();
 
     this.username = username;
     this.password = password;
     this.roles = roles;
-  }
+  }*/
 
-  @Column({ type: DataType.STRING, allowNull: false, comment: 'user name' })
+  @Column({ type: DataType.STRING, allowNull: false, comment: 'username' })
   username: string;
 
   @Column({ type: DataType.STRING, allowNull: false, comment: 'password' })

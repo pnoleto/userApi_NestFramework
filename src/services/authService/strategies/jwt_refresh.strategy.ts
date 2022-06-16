@@ -1,8 +1,8 @@
-import { jwtRefreshTokenConstants } from '../../../consts/constants';
+import { jwtRefreshTokenSettings } from '../../../consts/constants';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { Role } from 'userApi/domain';
+import { Role } from '@userApi/domain';
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(
@@ -13,7 +13,7 @@ export class JwtRefreshStrategy extends PassportStrategy(
     super({
       jwtFromRequest: ExtractJwt.fromBodyField('refresh_token'),
       ignoreExpiration: false,
-      secretOrKey: jwtRefreshTokenConstants.secret,
+      secretOrKey: jwtRefreshTokenSettings.secret,
     });
   }
 

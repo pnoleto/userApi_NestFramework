@@ -1,5 +1,5 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppConfig, SwaggerSettings } from './consts/constants';
+import { appSettings, swaggerSettings } from './consts/constants';
 import * as compression from 'compression';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -11,14 +11,14 @@ async function bootstrap() {
   app.use(helmet());
 
   const config = new DocumentBuilder()
-    .setTitle(SwaggerSettings.title)
-    .setDescription(SwaggerSettings.description)
-    .setVersion(SwaggerSettings.version)
+    .setTitle(swaggerSettings.title)
+    .setDescription(swaggerSettings.description)
+    .setVersion(swaggerSettings.version)
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(AppConfig.port);
+  await app.listen(appSettings.port);
 }
 bootstrap();

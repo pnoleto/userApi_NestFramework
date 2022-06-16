@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { ThrottleSettings } from './consts/constants';
+import { throttleSettings } from './consts/constants';
 import { AppControllerModule } from './controllers';
 
 @Module({
   imports: [
     AppControllerModule,
     ThrottlerModule.forRoot({
-      ttl: ThrottleSettings.ttl,
-      limit: ThrottleSettings.limit,
+      ttl: throttleSettings.ttl,
+      limit: throttleSettings.limit,
     }),
   ],
   controllers: [],

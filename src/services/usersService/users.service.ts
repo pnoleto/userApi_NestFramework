@@ -1,14 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { User } from 'userApi/domain';
+import { USERS_REPOSITORY_TOKEN } from '@userApi/infra/consts';
+import { User } from '@userApi/domain';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @Inject('usersRepository')
+    @Inject(USERS_REPOSITORY_TOKEN)
     private usersRepository: typeof User,
   ) {}
 
-  public async findOne(username: string): Promise<User> {
-    return await this.usersRepository.findOne({ where: { username } });
+  public findOne(username: string): Promise<User> {
+    return this.usersRepository.findOne({ where: { username } });
   }
 }

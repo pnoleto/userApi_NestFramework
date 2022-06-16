@@ -1,0 +1,2 @@
+export const USERS_REPOSITORY_TOKEN: string = 'USERS_REPOSITORY';
+export const POSTGRES_PROVIDER_TOKEN: string = 'POSTGRES_PROVIDER';

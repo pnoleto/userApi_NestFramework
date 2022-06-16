@@ -2,10 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import {
   AuthServiceModule,
-  JwtAuthModule,
-  LocalAuthGuardModule,
-  RolesGuardModule,
 } from '../../services';
+import { JwtAuthModule, LocalAuthGuardModule, RolesGuardModule } from '@userApi/domain';
 
 @Module({
   imports: [

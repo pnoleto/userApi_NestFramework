@@ -6,13 +6,10 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
-import { IS_PUBLIC_KEY } from 'src/decorators';
+import { IS_PUBLIC_KEY } from '../../decorators';
 
 @Injectable()
-export class JwtRefreshTokenGuard
-  extends AuthGuard(['jwt-refresh'])
-  implements CanActivate
-{
+export class JwtAuthGuard extends AuthGuard(['jwt']) implements CanActivate {
   constructor(private reflector: Reflector) {
     super();
   }

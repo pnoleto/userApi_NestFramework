@@ -3,4 +3,3 @@ export * from './authService/auth.service.module';
 export * from './usersService/users.service';
 export * from './usersService/users.service.module';
 export * from './authService/strategies/index';
-export * from './guard/index';
