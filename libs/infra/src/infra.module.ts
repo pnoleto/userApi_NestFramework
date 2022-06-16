@@ -9,8 +9,6 @@ import { InfraService } from './infra.service';
   exports: [InfraService, USERS_REPOSITORY],
 })
 export class InfraModule {
-  constructor() {}
-
   public static Register(options: DatabaseSettings): DynamicModule {
     return {
       module: InfraModule,
