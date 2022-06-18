@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { USERS_REPOSITORY_TOKEN } from '@userApi/infra/consts';
+import { USERS_REPOSITORY_TOKEN } from '@userApi/infra';
 import { User } from '@userApi/domain';
 
 @Injectable()
