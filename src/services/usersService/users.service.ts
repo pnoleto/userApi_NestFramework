@@ -10,6 +10,10 @@ export class UsersService {
   ) {}
 
   public findOne(username: string): Promise<User> {
-    return this.usersRepository.findOne({ where: { username } });
+    const request = this.usersRepository.findOne({
+      where: { username },
+    });
+
+    return request;
   }
 }

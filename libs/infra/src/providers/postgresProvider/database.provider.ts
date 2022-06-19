@@ -1,8 +1,9 @@
-import { DatabaseSettings, User } from '@userApi/domain';
+import { DatabaseSettings } from '@userApi/domain';
 import { POSTGRES_PROVIDER_TOKEN } from '../../consts';
 import { Sequelize } from 'sequelize-typescript';
+import { defineModels } from '../../repository';
 
-export function POSTGRES_PROVIDER(databaseSettings: DatabaseSettings): any[] {
+export function PostgresProvider(databaseSettings: DatabaseSettings): any[] {
   return [
     {
       provide: POSTGRES_PROVIDER_TOKEN,
@@ -14,11 +15,13 @@ export function POSTGRES_PROVIDER(databaseSettings: DatabaseSettings): any[] {
           username: databaseSettings.username,
           password: databaseSettings.password,
           database: databaseSettings.database,
-          schema: databaseSettings.schema
+          schema: databaseSettings.schema,
         });
 
-        postgresProvider.addModels([User]);
+        defineModels(postgresProvider);
+
         await postgresProvider.sync();
+
         return postgresProvider;
       },
     },
