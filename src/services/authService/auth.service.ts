@@ -1,8 +1,8 @@
-import { User } from 'src/models';
+import { User } from '@userApi/domain';
 import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../usersService/users.service';
-import { jwtRefreshTokenConstants, jwtConstants } from '../../consts/constants';
+import { jwtRefreshTokenSettings, jwtSettings } from '../../consts/constants';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,7 @@ export class AuthService {
     const user = await this.usersService.findOne(username);
 
     if (user && user.password === pass) {
-      const { password, ...result } = user.get();
+      const { password, ...result } = user;
       return result;
     }
 
@@ -30,8 +30,8 @@ export class AuthService {
     };
 
     return {
-      access_token: this.jwtService.sign(playload, jwtConstants),
-      refresh_token: this.jwtService.sign(playload, jwtRefreshTokenConstants),
+      access_token: this.jwtService.sign(playload, jwtSettings),
+      refresh_token: this.jwtService.sign(playload, jwtRefreshTokenSettings),
     };
   }
 
@@ -39,7 +39,7 @@ export class AuthService {
     const playload = user;
 
     return {
-      access_token: this.jwtService.sign(playload, jwtConstants),
+      access_token: this.jwtService.sign(playload, jwtSettings),
     };
   }
 }

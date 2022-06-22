@@ -1,48 +1,54 @@
 import 'dotenv/config';
-
-const IS_PUBLIC_KEY = 'isPublic';
+import {
+  AppSettings,
+  DatabaseSettings,
+  JwtRefreshTokenSettings,
+  JwtSettings,
+  SwaggerSettings,
+  ThrottleSettings,
+} from '@userApi/domain';
 
 const environmentVariables = process.env as any;
 
-export const AppConfig = {
+export const appSettings: AppSettings = {
   port: environmentVariables.PORT || 3000,
 };
 
 const tokenConfig = JSON.parse(environmentVariables.tokenConfig);
 
-export const jwtConstants = {
+export const jwtSettings: JwtSettings = {
   secret: tokenConfig.secret,
-  expiresIn: tokenConfig.expiresIn,
+  expiresIn: tokenConfig.expiresIn
 };
 
 const refreshTokenConfig = JSON.parse(environmentVariables.refreshTokenConfig);
 
-export const jwtRefreshTokenConstants = {
+export const jwtRefreshTokenSettings: JwtRefreshTokenSettings = {
   secret: refreshTokenConfig.secret,
-  expiresIn: refreshTokenConfig.expiresIn,
+  expiresIn: refreshTokenConfig.expiresIn
 };
 
 const ttlConfig = JSON.parse(environmentVariables.ttlConfig);
 
-export const ThrottleSettings = {
+export const throttleSettings: ThrottleSettings = {
   ttl: ttlConfig.ttl,
   limit: ttlConfig.limit,
 };
 
-const postgresConfig = JSON.parse(environmentVariables.postgresConfig);
+const databaseConfig = JSON.parse(environmentVariables.postgresConfig);
 
-export const PostgresSettings = {
-  host: postgresConfig.host,
-  port: postgresConfig.port,
-  username: postgresConfig.username,
-  password: postgresConfig.password,
-  database: postgresConfig.database,
-  schema: postgresConfig.schema,
+export const databaseSettings: DatabaseSettings = {
+  host: databaseConfig.host,
+  port: databaseConfig.port,
+  username: databaseConfig.username,
+  password: databaseConfig.password,
+  database: databaseConfig.database,
+  schema: databaseConfig.schema,
 };
 
 const swaggerConfig = JSON.parse(environmentVariables.swaggerConfig);
 
-export const SwaggerSettings = {
+export const swaggerSettings: SwaggerSettings = {
   title: swaggerConfig.title,
   description: swaggerConfig.description,
   version: swaggerConfig.version,

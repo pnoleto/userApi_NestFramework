@@ -1,17 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
+import { AuthServiceModule } from '../../services';
 import {
-  AuthServiceModule,
   JwtAuthModule,
-  JwtRefreshTokenGuard,
   LocalAuthGuardModule,
   RolesGuardModule,
-} from '../../services';
+} from '@userApi/domain';
 
 @Module({
   imports: [
     JwtAuthModule,
-    JwtRefreshTokenGuard,
     RolesGuardModule,
     AuthServiceModule,
     LocalAuthGuardModule,

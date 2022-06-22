@@ -1,5 +1,5 @@
 {
-  "name": "userapi_nest",
+  "name": "userapi",
   "version": "0.0.1",
   "description": "",
   "author": "Phelipe Noleto",
@@ -8,7 +8,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
     "start": "set NODE_ENV=development&& nest start",
     "start:dev": "set NODE_ENV=development&& nest start --watch",
     "start:debug": "set NODE_ENV=development&& nest start --debug --watch",
@@ -77,7 +77,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -85,7 +85,15 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@userApi/domain(|/.*)$": "<rootDir>/libs/domain/src/$1",
+      "^@userApi/infra(|/.*)$": "<rootDir>/libs/infra/src/$1"
+    }
   }
 }
