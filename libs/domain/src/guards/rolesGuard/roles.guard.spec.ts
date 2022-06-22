@@ -1,20 +1,20 @@
-import { Reflector } from '@nestjs/core';
 import { Test, TestingModule } from '@nestjs/testing';
-import { RolesGuardModule } from 'src/services';
+import { RolesGuardModule } from './roles-guard.module';
 import { RolesGuard } from './roles.guard';
 
-beforeEach(async () => {
-  const module: TestingModule = await Test.createTestingModule({
-    imports: [
-      RolesGuardModule
-    ],
-    providers: [],
-  }).compile();
-});
-
 describe('RolesGuard', () => {
+  let service: RolesGuard;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      imports:[RolesGuardModule],
+      providers: [RolesGuard],
+    }).compile();
+
+    service = module.get<RolesGuard>(RolesGuard);
+  });
+
   it('should be defined', () => {
-    let reflector: Reflector = new Reflector();
-    expect(new RolesGuard(reflector)).toBeDefined();
+    expect(service).toBeDefined();
   });
 });
