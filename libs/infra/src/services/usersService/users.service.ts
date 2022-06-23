@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { USERS_REPOSITORY_TOKEN } from '@userApi/infra';
 import { User } from '@userApi/domain';
+import { USERS_REPOSITORY_TOKEN } from '../../consts';
 
 @Injectable()
 export class UsersService {

@@ -39,7 +39,7 @@ export class AppController {
   @Roles(Role.Admin, Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiOkResponse({ description: 'Example of endpoint description' })
-  public profile(@Request() req: any): any {
+  public profile(@Request() req: any): any {   
     return req.user;
   }
 }
