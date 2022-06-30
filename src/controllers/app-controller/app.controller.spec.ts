@@ -1,9 +1,8 @@
-import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppControllerModule } from './app.controller.module';
 import { AppController } from './app.controller';
 import { Role } from '@userApi/domain';
-import { AuthServiceModule } from 'src/services';
+import { AuthServiceModule } from '@userApi/infra';
 
 describe('AppController', () => {
   let req = {

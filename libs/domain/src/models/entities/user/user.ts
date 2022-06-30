@@ -1,5 +1,5 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { Role } from '../../enums';
+import { Role } from '../../../enums';
 
 @Table({ tableName: 'users' })
 export class User extends Model {
@@ -10,6 +10,7 @@ export class User extends Model {
     comment: 'username',
   })
   username: string;
+
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -17,6 +18,7 @@ export class User extends Model {
     comment: 'password',
   })
   password: string;
+
   @Column({
     type: DataType.ARRAY(DataType.STRING),
     allowNull: false,

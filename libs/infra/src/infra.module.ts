@@ -1,6 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { DatabaseSettings, DomainModule } from '@userApi/domain';
-import { PostgresProvider, USERS_REPOSITORY } from './providers';
+import { PostgresProvider as postgresProvider, USERS_REPOSITORY } from './providers';
 import { InfraService } from './infra.service';
 
 @Module({
@@ -9,10 +9,10 @@ import { InfraService } from './infra.service';
   exports: [InfraService, USERS_REPOSITORY],
 })
 export class InfraModule {
-  public static Register(options: DatabaseSettings): DynamicModule {
+  public static register(options: DatabaseSettings): DynamicModule {
     return {
       module: InfraModule,
-      providers: PostgresProvider(options),
+      providers: postgresProvider(options),
     };
   }
 }

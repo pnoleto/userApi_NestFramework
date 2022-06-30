@@ -1,2 +1,2 @@
-export * from './postgresProvider/database.provider';
-export * from '../repository/usersRepository/user.repository';
+export * from './postgres-provider/database.provider';
+export * from '../repository/users-repository/user.repository';

@@ -1,4 +1,3 @@
-import { AuthService } from '../../services';
 import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import {
@@ -9,6 +8,7 @@ import {
   RolesGuard,
   Roles,
 } from '@userApi/domain';
+import { AuthService } from '@userApi/infra';
 
 @ApiTags('auth')
 @ApiBearerAuth('JWT')
@@ -39,7 +39,7 @@ export class AppController {
   @Roles(Role.Admin, Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiOkResponse({ description: 'Example of endpoint description' })
-  public profile(@Request() req: any): any {   
+  public profile(@Request() req: any): any {
     return req.user;
   }
 }

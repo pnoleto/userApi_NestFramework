@@ -1,8 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { Role, User } from '@userApi/domain';
-import { JwtRefreshStrategy, JwtStrategy, LocalStrategy } from '../strategies';
-import { InfraModule } from '@userApi/infra';
+import { InfraModule, JwtRefreshStrategy, JwtStrategy, LocalStrategy } from '@userApi/infra';
 import { AuthServiceModule } from './auth.service.module';
 
 describe('AuthService', () => {

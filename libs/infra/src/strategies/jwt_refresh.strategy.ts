@@ -1,16 +1,14 @@
-
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { Role } from '@userApi/domain';
-import { jwtRefreshTokenSettings } from 'src/consts/constants';
+import { JwtRefreshTokenSettings, Role } from '@userApi/domain';
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(
   Strategy,
   'jwt-refresh',
 ) {
-  constructor() {
+  constructor(jwtRefreshTokenSettings: JwtRefreshTokenSettings) {
     super({
       jwtFromRequest: ExtractJwt.fromBodyField('refresh_token'),
       ignoreExpiration: false,
@@ -27,4 +25,13 @@ export class JwtRefreshStrategy extends PassportStrategy(
       roles: playload.roles,
     };
   }
+}
+
+export function JwtRefreshStrategyOptions(
+  jwtOptions: JwtRefreshTokenSettings,
+): any {
+  return {
+    provide: JwtRefreshStrategy.name,
+    useFactory: () => new JwtRefreshStrategy(jwtOptions),
+  };
 }

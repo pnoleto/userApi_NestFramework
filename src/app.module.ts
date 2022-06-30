@@ -11,14 +11,14 @@ import { databaseSettings, throttleSettings } from './consts/constants';
       ttl: throttleSettings.ttl,
       limit: throttleSettings.limit,
     }),
-    InfraModule.Register({
+    InfraModule.register({
       host: databaseSettings.host,
       port: databaseSettings.port,
       database: databaseSettings.database,
       username: databaseSettings.username,
       password: databaseSettings.password,
       schema: databaseSettings.schema,
-    }),
+    })
   ],
   controllers: [],
   providers: [],

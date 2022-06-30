@@ -1,2 +1,2 @@
-export * from './appController/app.controller.module';
-export * from './appController/app.controller';
+export * from './app-controller/app.controller.module';
+export * from './app-controller/app.controller';
