@@ -10,46 +10,26 @@ import {
 
 const environmentVariables = process.env as any;
 
-export const appSettings: AppSettings = {
-  port: environmentVariables.PORT || 3000,
-};
+export const appSettings: AppSettings = JSON.parse(
+  environmentVariables.appSettings,
+) as AppSettings;
 
-const tokenConfig = JSON.parse(environmentVariables.tokenConfig);
+export const jwtSettings: JwtSettings = JSON.parse(
+  environmentVariables.tokenConfig,
+);
 
-export const jwtSettings: JwtSettings = {
-  secret: tokenConfig.secret,
-  expiresIn: tokenConfig.expiresIn
-};
+export const jwtRefreshTokenSettings: JwtRefreshTokenSettings = JSON.parse(
+  environmentVariables.refreshTokenConfig,
+);
 
-const refreshTokenConfig = JSON.parse(environmentVariables.refreshTokenConfig);
+export const throttleSettings: ThrottleSettings = JSON.parse(
+  environmentVariables.ttlConfig,
+);
 
-export const jwtRefreshTokenSettings: JwtRefreshTokenSettings = {
-  secret: refreshTokenConfig.secret,
-  expiresIn: refreshTokenConfig.expiresIn
-};
+export const databaseSettings: DatabaseSettings = JSON.parse(
+  environmentVariables.postgresConfig,
+);
 
-const ttlConfig = JSON.parse(environmentVariables.ttlConfig);
-
-export const throttleSettings: ThrottleSettings = {
-  ttl: ttlConfig.ttl,
-  limit: ttlConfig.limit,
-};
-
-const databaseConfig = JSON.parse(environmentVariables.postgresConfig);
-
-export const databaseSettings: DatabaseSettings = {
-  host: databaseConfig.host,
-  port: databaseConfig.port,
-  username: databaseConfig.username,
-  password: databaseConfig.password,
-  database: databaseConfig.database,
-  schema: databaseConfig.schema,
-};
-
-const swaggerConfig = JSON.parse(environmentVariables.swaggerConfig);
-
-export const swaggerSettings: SwaggerSettings = {
-  title: swaggerConfig.title,
-  description: swaggerConfig.description,
-  version: swaggerConfig.version,
-};
+export const swaggerSettings: SwaggerSettings = JSON.parse(
+  environmentVariables.swaggerConfig,
+);

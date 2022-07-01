@@ -20,9 +20,17 @@ export class StrategiesModule {
     jwtRefreshOptions: JwtRefreshTokenSettings,
   ): DynamicModule {
     return {
-      module: InfraModule,
-      imports: [JwtModule.register({}), UsersServiceModule],
+      module: StrategiesModule,
+      imports: [JwtModule.register({}), InfraModule, UsersServiceModule],
       providers: [
+        {
+          provide: JwtSettings,
+          useValue: jwtOptions
+        },
+        {
+          provide: JwtRefreshTokenSettings,
+          useValue: jwtRefreshOptions
+        },
         LocalStrategy,
         JwtStrategyOptions(jwtOptions),
         JwtRefreshStrategyOptions(jwtRefreshOptions),

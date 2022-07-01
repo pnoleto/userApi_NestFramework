@@ -1,5 +1,5 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { appSettings, swaggerSettings } from './consts/constants';
+import { appSettings, swaggerSettings } from './consts';
 import * as compression from 'compression';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';

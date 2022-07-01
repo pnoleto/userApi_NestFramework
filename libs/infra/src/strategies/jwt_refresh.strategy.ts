@@ -28,10 +28,10 @@ export class JwtRefreshStrategy extends PassportStrategy(
 }
 
 export function JwtRefreshStrategyOptions(
-  jwtOptions: JwtRefreshTokenSettings,
+  jwtRefreshOptions: JwtRefreshTokenSettings,
 ): any {
   return {
     provide: JwtRefreshStrategy.name,
-    useFactory: () => new JwtRefreshStrategy(jwtOptions),
+    useFactory: () => new JwtRefreshStrategy(jwtRefreshOptions),
   };
 }

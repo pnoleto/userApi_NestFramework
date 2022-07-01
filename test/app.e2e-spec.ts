@@ -47,6 +47,6 @@ describe('AppController (e2e)', () => {
       .get('/auth/profile')
       .set('Authorization', `Bearer ${tokenResponse}`)
       .expect(200)
-      .expect(JSON.stringify(profile));
+      .responseType(typeof(profile));
   });
 });

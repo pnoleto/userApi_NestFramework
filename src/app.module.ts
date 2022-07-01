@@ -1,8 +1,10 @@
+
+import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { InfraModule } from '@userApi/infra';
-import { ThrottlerModule } from '@nestjs/throttler';
 import { AppControllerModule } from './controllers';
-import { databaseSettings, throttleSettings } from './consts/constants';
+import { databaseSettings, throttleSettings } from './consts';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -18,9 +20,14 @@ import { databaseSettings, throttleSettings } from './consts/constants';
       username: databaseSettings.username,
       password: databaseSettings.password,
       schema: databaseSettings.schema,
-    })
+    }),
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}
