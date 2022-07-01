@@ -3,7 +3,7 @@ import { DomainService } from './domain.service';
 
 @Module({
   providers: [DomainService],
-  exports: [DomainService],
-  imports:[]
+  exports: [],
+  imports: [],
 })
 export class DomainModule {}

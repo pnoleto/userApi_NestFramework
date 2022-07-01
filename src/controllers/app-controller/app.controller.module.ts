@@ -6,11 +6,12 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
+    AppControllerModule,
     JwtModule.register({}),
     AuthServiceModule.register(jwtSettings, jwtRefreshTokenSettings),
     StrategiesModule.register(jwtSettings, jwtRefreshTokenSettings),
   ],
-  providers: [],
   controllers: [AppController],
+  providers: [],
 })
 export class AppControllerModule {}
