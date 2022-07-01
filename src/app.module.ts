@@ -1,4 +1,3 @@
-
 import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { InfraModule } from '@userApi/infra';
@@ -22,12 +21,12 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
       schema: databaseSettings.schema,
     }),
   ],
-  controllers: [],
   providers: [
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
     },
   ],
+  controllers: [],
 })
 export class AppModule {}
