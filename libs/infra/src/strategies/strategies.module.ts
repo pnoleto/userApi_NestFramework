@@ -2,16 +2,13 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtRefreshTokenSettings, JwtSettings } from '@userApi/domain';
 import { InfraModule, UsersServiceModule } from '@userApi/infra';
-import { JwtStrategy, JwtStrategyOptions } from './jwt.strategy';
-import {
-  JwtRefreshStrategy,
-  JwtRefreshStrategyOptions,
-} from './jwt_refresh.strategy';
+import { JwtStrategyOptions } from './jwt.strategy';
+import { JwtRefreshStrategyOptions } from './jwt_refresh.strategy';
 import { LocalStrategy } from './local.strategy';
 
 @Module({
-  imports: [InfraModule, UsersServiceModule],
-  providers: [LocalStrategy, JwtStrategy, JwtRefreshStrategy],
+  imports: [],
+  providers: [],
   exports: [],
 })
 export class StrategiesModule {
@@ -25,16 +22,17 @@ export class StrategiesModule {
       providers: [
         {
           provide: JwtSettings,
-          useValue: jwtOptions
+          useValue: jwtOptions,
         },
         {
           provide: JwtRefreshTokenSettings,
-          useValue: jwtRefreshOptions
+          useValue: jwtRefreshOptions,
         },
         LocalStrategy,
         JwtStrategyOptions(jwtOptions),
         JwtRefreshStrategyOptions(jwtRefreshOptions),
       ],
+      exports: [UsersServiceModule],
     };
   }
 }

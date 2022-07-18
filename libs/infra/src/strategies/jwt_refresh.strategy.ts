@@ -1,7 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { JwtRefreshTokenSettings, Role } from '@userApi/domain';
+import { JwtRefreshTokenSettings, UserResourceActions } from '@userApi/domain';
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(
@@ -18,11 +18,11 @@ export class JwtRefreshStrategy extends PassportStrategy(
 
   public async validate(
     playload: any,
-  ): Promise<{ userId: number; username: string; roles: Role[] }> {
+  ): Promise<{ userId: number; username: string; resources: UserResourceActions[] }> {
     return {
       userId: playload.sub,
       username: playload.username,
-      roles: playload.roles,
+      resources: playload.resources,
     };
   }
 }

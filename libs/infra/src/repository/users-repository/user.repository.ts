@@ -1,14 +1,20 @@
-import { User } from '@userApi/domain';
+import { ProfileEntity, UserEntity } from '@userApi/domain';
 import { Sequelize } from 'sequelize-typescript';
-import { USERS_REPOSITORY_TOKEN } from '../../consts';
+import {
+  PROFILES_REPOSITORY_TOKEN,
+  USERS_REPOSITORY_TOKEN,
+} from '../../consts';
 
 export async function defineModels(sequelize: Sequelize) {
-  sequelize.addModels([User]);
+  sequelize.addModels([UserEntity, ProfileEntity]);
 }
 
 export const USERS_REPOSITORY = {
   provide: USERS_REPOSITORY_TOKEN,
-  useValue: User,
+  useValue: UserEntity,
 };
 
-
+export const PROFILES_REPOSITORY = {
+  provide: PROFILES_REPOSITORY_TOKEN,
+  useValue: ProfileEntity,
+};

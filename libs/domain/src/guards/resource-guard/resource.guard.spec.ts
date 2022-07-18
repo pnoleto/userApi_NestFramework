@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RolesGuardModule } from './roles-guard.module';
-import { RolesGuard } from './roles.guard';
+import { ResourceGuardModule } from './resource-guard.module';
+import { ResourceGuard } from './resource.guard';
 
 describe('RolesGuard', () => {
-  let service: RolesGuard;
+  let service: ResourceGuard;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports:[RolesGuardModule],
-      providers: [RolesGuard],
+      imports:[ResourceGuardModule],
+      providers: [ResourceGuard],
     }).compile();
 
-    service = module.get<RolesGuard>(RolesGuard);
+    service = module.get<ResourceGuard>(ResourceGuard);
   });
 
   it('should be defined', () => {

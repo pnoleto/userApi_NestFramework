@@ -1,29 +1,12 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { Role } from '../../../enums';
+import { Profile } from '../profile/profile';
+import { Document } from '../document/document';
+import { Table } from 'sequelize-typescript';
+
+export class User {
+  username: string;
+  password: string;
+  profile: Profile;
+}
 
 @Table({ tableName: 'users' })
-export class User extends Model {
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    unique: false,
-    comment: 'username',
-  })
-  username: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    unique: false,
-    comment: 'password',
-  })
-  password: string;
-
-  @Column({
-    type: DataType.ARRAY(DataType.STRING),
-    allowNull: false,
-    unique: false,
-    comment: 'roles',
-  })
-  roles: Role[];
-}
+export class UserEntity extends Document<User> {}

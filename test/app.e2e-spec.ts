@@ -7,7 +7,7 @@ describe('AppController (e2e)', () => {
   let app: INestApplication;
   let tokenResponse: any;
   const user = { username: 'admin', password: 'admin' };
-  const profile = { userId: 1, username: 'admin', roles: ['admin'] };
+  const profile = { userId: 1, username: 'admin', resources: ['admin'] };
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

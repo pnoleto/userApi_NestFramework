@@ -3,7 +3,7 @@ import { POSTGRES_PROVIDER_TOKEN } from '../../consts';
 import { Sequelize } from 'sequelize-typescript';
 import { defineModels } from '../../repository';
 
-export function PostgresProvider(databaseSettings: DatabaseSettings): any[] {
+export function postgresProvider(databaseSettings: DatabaseSettings): any[] {
   return [
     {
       provide: POSTGRES_PROVIDER_TOKEN,

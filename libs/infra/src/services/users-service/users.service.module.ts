@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { USERS_REPOSITORY } from '../../repository';
+import { InfraModule } from '@userApi/infra/infra.module';
 import { UsersService } from './users.service';
 
 @Module({
-  imports: [],
-  exports: [UsersService, USERS_REPOSITORY],
-  providers: [UsersService, USERS_REPOSITORY],
+  imports: [InfraModule],
+  exports: [UsersService],
+  providers: [UsersService],
 })
 export class UsersServiceModule {}

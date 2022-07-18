@@ -1,6 +1,11 @@
 import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
-import { JwtRefreshTokenSettings, JwtSettings, User } from '@userApi/domain';
+import {
+  JwtRefreshTokenSettings,
+  JwtSettings,
+  UserEntity,
+  UserResourceActions,
+} from '@userApi/domain';
 
 @Injectable()
 export class AuthService {
@@ -10,11 +15,20 @@ export class AuthService {
     private jwtRefreshTokenSettings: JwtRefreshTokenSettings,
   ) {}
 
-  public login(user: User): { access_token: string; refresh_token: string } {
+  public generateTokenFromLogin(user: UserEntity): {
+    access_token: string;
+    refresh_token: string;
+  } {
+    let actionsList: UserResourceActions[] = [];
+
+    user.document.profile.resources.map((resource) =>
+      resource.actions.map((action) => actionsList.push(action)),
+    );
+
     const playload = {
       sub: user.id,
-      username: user.username,
-      roles: user.roles,
+      username: user.document.username,
+      resources: actionsList,
     };
 
     return {

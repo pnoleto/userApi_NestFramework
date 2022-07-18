@@ -1,13 +1,14 @@
 import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { InfraModule } from '@userApi/infra';
-import { AppControllerModule } from './controllers';
+import { UsersControllerModule, ProfilesControllerModule } from './controllers';
 import { databaseSettings, throttleSettings } from './consts';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
-    AppControllerModule,
+    UsersControllerModule,
+    ProfilesControllerModule,
     ThrottlerModule.forRoot({
       ttl: throttleSettings.ttl,
       limit: throttleSettings.limit,

@@ -1,7 +1,7 @@
-import { JwtRefreshSettings } from './jwt-refresh-settings';
+import { JwtRefreshTokenSettings } from './jwt-refresh-settings';
 
 describe('JwtRefreshSettings', () => {
   it('should be defined', () => {
-    expect(new JwtRefreshSettings()).toBeDefined();
+    expect(new JwtRefreshTokenSettings()).toBeDefined();
   });
 });
